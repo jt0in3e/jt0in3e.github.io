@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Hi, I&#39;m John</title>
+  
+  <subtitle>Software Engineer</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://jt0in3e.github.io/"/>
+  <updated>2019-07-12T06:04:17.019Z</updated>
+  <id>https://jt0in3e.github.io/</id>
+  
+  <author>
+    <name>John Tukey</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="https://jt0in3e.github.io/2018/01/01/hello-world/"/>
+    <id>https://jt0in3e.github.io/2018/01/01/hello-world/</id>
+    <published>2017-12-31T22:00:00.000Z</published>
+    <updated>2019-07-12T06:04:17.019Z</updated>
+    
+    <content type="html"><![CDATA[<p>This is my first post on <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>.<br>Hexo is very elegant blogging platform built on Node.JS.<br>Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. Support here <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> and here <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Install-Node-JS"><a href="#Install-Node-JS" class="headerlink" title="Install Node.JS"></a>Install Node.JS</h3><p>See <a href="https://nodejs.org/" target="_blank" rel="noopener">Node.js website</a> for details how to install.</p><h3 id="Get-hexo-cli"><a href="#Get-hexo-cli" class="headerlink" title="Get hexo-cli"></a>Get hexo-cli</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm install -g hexo-cli</span><br></pre></td></tr></table></figure><h3 id="Init-hexo-project-blog"><a href="#Init-hexo-project-blog" class="headerlink" title="Init hexo project (blog)"></a>Init hexo project (blog)</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo init <span class="string">"Blog"</span></span><br><span class="line">$ <span class="built_in">cd</span> Blog</span><br></pre></td></tr></table></figure><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;This is my first post on &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;.&lt;br&gt;Hexo is very elegant blogging platform bu
+      
+    
+    </summary>
+    
+    
+      <category term="bash" scheme="https://jt0in3e.github.io/tags/bash/"/>
+    
+      <category term="hexo" scheme="https://jt0in3e.github.io/tags/hexo/"/>
+    
+  </entry>
+  
+</feed>

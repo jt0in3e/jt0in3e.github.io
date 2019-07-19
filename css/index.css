@@ -1141,6 +1141,10 @@ footer.is-mobile {
   color: #fff;
   cursor: default;
 }
+a+em {
+  display: block;
+  text-align: center;
+}
 #post-title {
   font-size: 1.4rem;
 }

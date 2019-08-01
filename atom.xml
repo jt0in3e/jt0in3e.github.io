@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Hi, I&#39;m John</title>
+  <title>😆 &quot;$ sudo rm -fr /&quot; 🥺</title>
   
   <subtitle>Software Engineer</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://jt0in3e.github.io/"/>
-  <updated>2019-07-28T17:19:38.992Z</updated>
+  <updated>2019-08-01T08:05:00.772Z</updated>
   <id>https://jt0in3e.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Quirk: Застосунок для Когнітивно-Поведінкової Терапії (КПТ) з відкритими сирцями (open source)</title>
+    <link href="https://jt0in3e.github.io/2019/08/01/cbt-app-quirk/"/>
+    <id>https://jt0in3e.github.io/2019/08/01/cbt-app-quirk/</id>
+    <published>2019-08-01T08:05:00.000Z</published>
+    <updated>2019-08-01T08:05:00.772Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="Про-КПТ"><a href="#Про-КПТ" class="headerlink" title="Про КПТ"></a>Про КПТ</h3><p><a href="https://i-cbt.org.ua/pro-kpt/" target="_blank" rel="noopener">Український інститут когнітивно-поведінкової терапі</a>:</p><blockquote><p>Когнітивно-поведінкова терапія (КПТ) є одним з провідних, сучасних, науковообгрунтованих методів психотерапії. Вона базується на усвідомленні того, що при багатьох психіатричних розладах та психологічних проблемах спотворене сприйняття реальності (себе, інших людей, майбутнього і т.п.), а також неадекватні дії у відповідь на існуючі проблеми є основними факторами, що підтримують розвиток, утримання існуючих проблем та розладів. Відповідно критично переосмислюючи своє сприйняття дійсності та свою поведінку, з допомогою психотерапевта клієнт намагається змінити дисфункційні, негативні взірці та цикли мислення та поведінки на більш реалістичні та такі, що сприятимуть покращенню емоційного стану, вирішенню міжособистісних та інших проблем, зміні життєвої ситуації на краще.</p></blockquote><h3 id="Про-Quirk"><a href="#Про-Quirk" class="headerlink" title="Про Quirk"></a>Про Quirk</h3><p><strong>Quirk</strong> - це <em>засіб</em> для КПТ. КПТ є однією з найбільш ефективних та широко використовуваних методик в лікуванні депресії, тривожності, панічних розладів та безліч інших проблем із психічним здоров’ям.</p><p>Quirk допомагає записувати “автоматичні думки”, кидати їм виклик і одночасно тренувати свій мозок на альтернативні думки. Це програма з <strong>відкритими сирцями згідно ліцензії GPL</strong>. Ви можете знайти її код на Github: <a href="https://github.com/Flaque/quirk" target="_blank" rel="noopener">https://github.com/Flaque/quirk</a></p><h4 id="Щодо-локалізації"><a href="#Щодо-локалізації" class="headerlink" title="Щодо локалізації"></a>Щодо локалізації</h4><p>Цей застосунок локалізовано на багато різних мов.<br>Локалізацію на українську мову ще не здійснено. Зараз подав <a href="https://github.com/Flaque/quirk/pull/149" target="_blank" rel="noopener"><strong>pull request</strong> на <em>Github</em></a> для включення української до програми.</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;Про-КПТ&quot;&gt;&lt;a href=&quot;#Про-КПТ&quot; class=&quot;headerlink&quot; title=&quot;Про КПТ&quot;&gt;&lt;/a&gt;Про КПТ&lt;/h3&gt;&lt;p&gt;&lt;a href=&quot;https://i-cbt.org.ua/pro-kpt/&quot; target=&quot;_b
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Операційні системи на базі Linux для смартфонів</title>

@@ -1,6 +1,6 @@
 baseURL = "https://jt0in3e.github.io/"
 languageCode = "uk"
-title = "Технічно технічний блог про пізнання"
+title = "Технічно технічний блог"
 theme = "ink-free"
 paginate = 5
 
@@ -12,7 +12,7 @@ copyright = "© J:a.k.a:Y"
   posts = "/:year/:month/:title"
 
 [params]
-	subtitle = "Деякі експеременти, щось з програмування, щось із пізнання та дійсностДеякі експеременти, щось з програмування, щось із пізнання та дійсностіі"
+	subtitle = "Деякі експеременти, щось з програмування, щось із пізнання та дійсност"
 
 	# Optional 64x64 avatar image.
 	#avatar = "https://image.freepik.com/free-vector/young-man-head-with-beard-avatar-character_24877-36786.jpg"

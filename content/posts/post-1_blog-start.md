@@ -6,3 +6,7 @@ draft: false
 ---
 
 Блог запущено на GitHub Pages за допомогою Hugo та підтримки git.
+
+```typescript
+{{ .ResourceType }} => unknown //бо це тобі не Hugo's template
+```

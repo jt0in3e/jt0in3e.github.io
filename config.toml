@@ -3,7 +3,8 @@ languageCode = "uk"
 title = "Технічно технічний блог"
 theme = "ink-free"
 paginate = 5
-
+#to get fancy dates of changes (look at [frontmatter])
+enableGitInfo = true
 copyright = "© J:a.k.a:Y"
 # Demo only
 #ignoreErrors = ["error-missing-instagram-accesstoken"]
@@ -88,3 +89,9 @@ url = "/index.xml"
     endLevel = 3
     ordered = true
     startLevel = 2 
+
+[frontmatter]
+  date = ["date", "publishDate", "lastmod"]
+  lastmod = [":git", "lastmod", "date", "publishDate"]
+  publishDate = ["publishDate", "date"]
+  expiryDate = ["expiryDate"]

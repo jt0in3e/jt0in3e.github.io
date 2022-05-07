@@ -1,0 +1,22 @@
+{{ $arg := .Get 0 }}
+{{ $table := index $.Site.Data $arg }}
+{{ $.Scratch.Set "count" 0 }}
+
+<table>
+  {{ range $row := $table }}
+	  {{ if eq 0 ($.Scratch.Get "count") }}
+      <tr>
+        {{ range $index, $value := $row }}
+        <th> {{ index $value 1 }} </th>
+        {{ end }}
+      </tr>
+    {{ else }}
+      <tr>
+        {{ range $index, $value := $row }}
+        <td> {{ index $value 1 | markdownify }} </td>
+        {{ end }}
+      </tr>
+    {{ end }}
+	  {{ $.Scratch.Add "count" 1 }}
+  {{ end }}
+</table>

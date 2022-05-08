@@ -2,6 +2,13 @@
 title: "Українські слова, які є у французькій мові, або навпаки :)"
 date: 2022-05-06T12:19:45+02:00
 draft: false
+tags:
+  - fr-ua
+  - general
+  - languages
+  - natural
+  - ukrainian
+  - french
 ---
 
 # Ідея

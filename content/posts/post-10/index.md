@@ -60,7 +60,7 @@ draft: false
 
 #### Photoprism configs
 
-```config
+```bash
 version: '3.5'
 
 # Example Docker Compose config file for PhotoPrism (Linux / AMD64)
@@ -235,3 +235,4 @@ services:
 ```
       PHOTOPRISM_INIT: "gpu tensorflow"
 ```
+{{< discuss post-11-photoprism-nginx >}}

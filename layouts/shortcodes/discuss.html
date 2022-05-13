@@ -8,8 +8,7 @@
       serverName: "cactus.chat",
       siteName: "jt0in3e",
       commentSectionId: '{{ if .Page.Params.did }} {{- .Page.Params.did -}} {{ else if isset .Params 0 }} {{- index .Params 0 -}} {{ else }}jt0in3e-blog-comments{{ end }}',
-      guestPostingEnabled: false,
-      updateInterval: 30
+      updateInterval: 180
   })
 </script>
 

@@ -14,7 +14,7 @@ tags:
   - linux
   - nginx
   - photoprism
-draft: true
+draft: false
 ---
 
 [PhotoPrism](https://docs.photoprism.app/) - чудова веб програма для організації, сортування, класифікації фото; [Nginx](https://nginx.org/) - усі знають цей веб сервер, веб проксі і ще багато чого веб.

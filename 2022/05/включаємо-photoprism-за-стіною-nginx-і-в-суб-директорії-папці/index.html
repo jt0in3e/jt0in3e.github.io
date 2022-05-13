@@ -1,0 +1,197 @@
+<!doctype html><html><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><title>Включаємо PhotoPrism за стіною NGINX і в суб-директорії (папці) - Технічно технічний блог</title><meta name=viewport content="width=device-width,initial-scale=1"><meta itemprop=name content="Включаємо PhotoPrism за стіною NGINX і в суб-директорії (папці)"><meta itemprop=description content="PhotoPrism - чудова веб програма для організації, сортування, класифікації фото; Nginx - усі знають цей веб сервер, веб проксі і ще багато чого веб.
+До недавнього часу PhotoPrism складно налаштовувався в контексті роботи за стіною, тобто за надійним веб проксі сервером в контексті доступу із суб-директорії, наприклад, https://example.com/photoprism. З останніми оновленнями усе запрацювало. Внизу інфо й налаштування як цього досягнути. Налаштування зроблені завдяки:
+ пану @scolby33, який підняв питання про запуск такої схеми; опису, зазначеному в документації PhotoPrism  Черговість налаштування не має значення."><meta itemprop=datePublished content="2022-05-09T21:34:53+02:00"><meta itemprop=dateModified content="2022-05-13T08:38:35+02:00"><meta itemprop=wordCount content="1235"><meta itemprop=keywords content="general,server,web,webserver,configs,setup,linux,nginx,photoprism,"><meta property="og:title" content="Включаємо PhotoPrism за стіною NGINX і в суб-директорії (папці)"><meta property="og:description" content="PhotoPrism - чудова веб програма для організації, сортування, класифікації фото; Nginx - усі знають цей веб сервер, веб проксі і ще багато чого веб.
+До недавнього часу PhotoPrism складно налаштовувався в контексті роботи за стіною, тобто за надійним веб проксі сервером в контексті доступу із суб-директорії, наприклад, https://example.com/photoprism. З останніми оновленнями усе запрацювало. Внизу інфо й налаштування як цього досягнути. Налаштування зроблені завдяки:
+ пану @scolby33, який підняв питання про запуск такої схеми; опису, зазначеному в документації PhotoPrism  Черговість налаштування не має значення."><meta property="og:type" content="article"><meta property="og:url" content="https://jt0in3e.github.io/2022/05/%D0%B2%D0%BA%D0%BB%D1%8E%D1%87%D0%B0%D1%94%D0%BC%D0%BE-photoprism-%D0%B7%D0%B0-%D1%81%D1%82%D1%96%D0%BD%D0%BE%D1%8E-nginx-%D1%96-%D0%B2-%D1%81%D1%83%D0%B1-%D0%B4%D0%B8%D1%80%D0%B5%D0%BA%D1%82%D0%BE%D1%80%D1%96%D1%97-%D0%BF%D0%B0%D0%BF%D1%86%D1%96/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2022-05-09T21:34:53+02:00"><meta property="article:modified_time" content="2022-05-13T08:38:35+02:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="Включаємо PhotoPrism за стіною NGINX і в суб-директорії (папці)"><meta name=twitter:description content="PhotoPrism - чудова веб програма для організації, сортування, класифікації фото; Nginx - усі знають цей веб сервер, веб проксі і ще багато чого веб.
+До недавнього часу PhotoPrism складно налаштовувався в контексті роботи за стіною, тобто за надійним веб проксі сервером в контексті доступу із суб-директорії, наприклад, https://example.com/photoprism. З останніми оновленнями усе запрацювало. Внизу інфо й налаштування як цього досягнути. Налаштування зроблені завдяки:
+ пану @scolby33, який підняв питання про запуск такої схеми; опису, зазначеному в документації PhotoPrism  Черговість налаштування не має значення."><link rel=stylesheet type=text/css media=screen href=https://jt0in3e.github.io/css/normalize.css><link rel=stylesheet type=text/css media=screen href=https://jt0in3e.github.io/css/main.css><link id=dark-scheme rel=stylesheet type=text/css href=https://jt0in3e.github.io/css/dark.css><script src=https://jt0in3e.github.io/js/feather.min.js></script>
+<script src=https://jt0in3e.github.io/js/main.js></script></head><body><div class="container wrapper"><div class=header><h1 class=site-title><a href=https://jt0in3e.github.io/>Технічно технічний блог</a></h1><div class=site-description><p>Деякі експеременти, щось з програмування, щось із пізнання та дійсност</p><nav class="nav social"><ul class=flat><li><a href=https://github.com/jt0in3e title=Github><i data-feather=github></i></a></li><li><a href=/index.xml title=RSS><i data-feather=rss></i></a></li></ul></nav></div><nav class=nav><ul class=flat><li><a href=/>Берлога</a></li><li><a href=/posts>Усі нариси</a></li><li><a href=/about>About</a></li><li><a href=/tags>Tags</a></li></ul></nav></div><div class=post><div class=post-header><div class=meta><div class=date><span class=day>09</span>
+<span class=rest>May 2022</span></div></div><div class=matter><h1 class=title>Включаємо PhotoPrism за стіною NGINX і в суб-директорії (папці)</h1></div></div><aside class=toc><header><h2>Contents</h2></header><nav id=TableOfContents><ol><li><ol><li></li></ol></li></ol></nav></aside><div class=markdown><div class=date><span><b>published:</b> <u>May 9, 2022</u>, <b><i>updated:</i></b> <i>May 13, 2022; 08:38</i></span></div><p><a href=https://docs.photoprism.app/>PhotoPrism</a> - чудова веб програма для організації, сортування, класифікації фото; <a href=https://nginx.org/>Nginx</a> - усі знають цей веб сервер, веб проксі і ще багато чого веб.</p><p>До недавнього часу PhotoPrism складно налаштовувався в контексті роботи за стіною, тобто за надійним веб проксі сервером в контексті доступу із суб-директорії, наприклад, <code>https://example.com/photoprism</code>. З останніми оновленнями усе запрацювало. Внизу інфо й налаштування як цього досягнути. Налаштування зроблені завдяки:</p><ul><li>пану <a href=https://github.com/photoprism/photoprism/issues/939#issue-790683829>@scolby33</a>, який підняв питання про запуск такої схеми;</li><li><a href=https://docs.photoprism.app/getting-started/advanced/nginx-proxy-setup/>опису, зазначеному в документації PhotoPrism</a></li></ul><p>Черговість налаштування не має значення.</p><h4 id=nginx>Nginx</h4><p>Налаштування основного домену <code>example.com</code> (<em>example.com.conf</em>) уже є, доналаштовуємо лише <em>суб директорію</em> <code>/photoprism</code>.</p><div class=highlight><div style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">14
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">15
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">16
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">17
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">18
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">19
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">20
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-nginx data-lang=nginx><span style=display:flex><span>    <span style=color:#6272a4>#include photoprism&#39;s configurations
+</span></span></span><span style=display:flex><span><span style=color:#6272a4></span>    <span style=color:#ff79c6>location</span> <span style=color:#f1fa8c>/photoprism/</span> {
+</span></span><span style=display:flex><span>        <span style=color:#6272a4># - - - - - - - - -
+</span></span></span><span style=display:flex><span><span style=color:#6272a4></span>        <span style=color:#6272a4># Reverse Proxy
+</span></span></span><span style=display:flex><span><span style=color:#6272a4></span>        <span style=color:#6272a4># - - - - - - - - -
+</span></span></span><span style=display:flex><span><span style=color:#6272a4></span>        <span style=color:#ff79c6>client_max_body_size</span> <span style=color:#f1fa8c>500M</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#ff79c6>proxy_redirect</span>    off;
+</span></span><span style=display:flex><span>        <span style=color:#ff79c6>proxy_set_header</span>  <span style=color:#f1fa8c>X-Real-IP</span> <span style=color:#8be9fd;font-style:italic>$remote_addr</span>;                        <span style=color:#6272a4># Let PP know the clients real IP
+</span></span></span><span style=display:flex><span><span style=color:#6272a4></span>        <span style=color:#ff79c6>proxy_set_header</span> <span style=color:#f1fa8c>X-Forwarded-For</span> <span style=color:#8be9fd;font-style:italic>$proxy_add_x_forwarded_for</span>;
+</span></span><span style=display:flex><span>        <span style=color:#ff79c6>proxy_set_header</span> <span style=color:#f1fa8c>Host</span> <span style=color:#8be9fd;font-style:italic>$http_host</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#ff79c6>proxy_pass</span> <span style=color:#f1fa8c>http://127.0.0.1:8484</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#ff79c6>proxy_buffering</span> off;
+</span></span><span style=display:flex><span>        <span style=color:#ff79c6>proxy_http_version</span> <span style=color:#bd93f9>1</span><span style=color:#f1fa8c>.1</span>;
+</span></span><span style=display:flex><span>        <span style=color:#ff79c6>proxy_set_header</span> <span style=color:#f1fa8c>Upgrade</span> <span style=color:#8be9fd;font-style:italic>$http_upgrade</span>;
+</span></span><span style=display:flex><span>        <span style=color:#ff79c6>proxy_set_header</span> <span style=color:#f1fa8c>Connection</span> <span style=color:#f1fa8c>&#34;upgrade&#34;</span>;
+</span></span><span style=display:flex><span>        <span style=color:#ff79c6>proxy_set_header</span> <span style=color:#f1fa8c>X-Forwarded-Proto</span> <span style=color:#8be9fd;font-style:italic>$scheme</span>;                             <span style=color:#6272a4># Let PP know that this connection used HTTP or HTTPS
+</span></span></span><span style=display:flex><span><span style=color:#6272a4></span>    }
+</span></span></code></pre></td></tr></table></div></div><p><strong>Важливо!</strong>: в директиві <code>location /photoprism/</code> вказати слеш в кінці (<strong>trailing slash</strong>).</p><p>В <code>proxy_pass</code> змінено порт на <strong>8484</strong> через зміну цього порта в налаштуваннях <em>Photoprism</em> (див.нижче)</p><h4 id=photoprism-configs>Photoprism configs</h4><pre tabindex=0><code class=language-config data-lang=config>version: &#39;3.5&#39;
+
+# Example Docker Compose config file for PhotoPrism (Linux / AMD64)
+#
+# Note:
+# - Running PhotoPrism on a server with less than 4 GB of swap space or setting a memory/swap limit can cause unexpected
+#   restarts (&#34;crashes&#34;), for example, when the indexer temporarily needs more memory to process large files.
+# - If you install PhotoPrism on a public server outside your home network, please always run it behind a secure
+#   HTTPS reverse proxy such as Traefik or Caddy. Your files and passwords will otherwise be transmitted
+#   in clear text and can be intercepted by anyone, including your provider, hackers, and governments:
+#   https://docs.photoprism.app/getting-started/proxies/traefik/
+#
+# Documentation : https://docs.photoprism.app/getting-started/docker-compose/
+# Docker Hub URL: https://hub.docker.com/r/photoprism/photoprism/
+#
+# DOCKER COMPOSE COMMAND REFERENCE
+# see https://docs.photoprism.app/getting-started/docker-compose/#command-line-interface
+# --------------------------------------------------------------------------
+# Start    | docker-compose up -d
+# Stop     | docker-compose stop
+# Update   | docker-compose pull
+# Logs     | docker-compose logs --tail=25 -f
+# Terminal | docker-compose exec photoprism bash
+# Help     | docker-compose exec photoprism photoprism help
+# Config   | docker-compose exec photoprism photoprism config
+# Reset    | docker-compose exec photoprism photoprism reset
+# Backup   | docker-compose exec photoprism photoprism backup -a -i
+# Restore  | docker-compose exec photoprism photoprism restore -a -i
+# Index    | docker-compose exec photoprism photoprism index
+# Reindex  | docker-compose exec photoprism photoprism index -f
+# Import   | docker-compose exec photoprism photoprism import
+#
+# To search originals for faces without a complete rescan:
+
+# docker-compose exec photoprism photoprism faces index
+#
+# All commands may have to be prefixed with &#34;sudo&#34; when not running as root.
+# This will point the home directory shortcut ~ to /root in volume mounts.
+
+services:
+  photoprism:
+    ## Use photoprism/photoprism:preview for testing preview builds:
+    image: photoprism/photoprism:latest
+    depends_on:
+      - mariadb
+    ## Don&#39;t enable automatic restarts until PhotoPrism has been properly configured and tested!
+    ## If the service gets stuck in a restart loop, this points to a memory, filesystem, network, or database issue:
+    ## https://docs.photoprism.app/getting-started/troubleshooting/#fatal-server-errors
+    # restart: unless-stopped
+    security_opt:
+      - seccomp:unconfined
+      - apparmor:unconfined
+    ports:
+      - &#34;8484:2342&#34; # HTTP port (host:container)
+    environment:
+      PHOTOPRISM_ADMIN_PASSWORD: &#34;insecure&#34;          # !!! PLEASE CHANGE YOUR INITIAL &#34;admin&#34; PASSWORD !!!
+      PHOTOPRISM_SITE_URL: &#34;https://example.com/photoprism/&#34;  # public server URL incl http:// or https:// and /path, :port is optional
+      PHOTOPRISM_ORIGINALS_LIMIT: 5000               # file size limit for originals in MB (increase for high-res video)
+      PHOTOPRISM_HTTP_COMPRESSION: &#34;gzip&#34;            # improves transfer speed and bandwidth utilization (none or gzip)
+      PHOTOPRISM_DEBUG: &#34;false&#34;                      # run in debug mode (shows additional log messages)
+      PHOTOPRISM_PUBLIC: &#34;false&#34;                     # no authentication required (disables password protection)
+      PHOTOPRISM_READONLY: &#34;false&#34;                   # don&#39;t modify originals directory (reduced functionality)
+      PHOTOPRISM_EXPERIMENTAL: &#34;false&#34;               # enables experimental features
+      PHOTOPRISM_DISABLE_CHOWN: &#34;false&#34;              # disables storage permission updates on startup
+      PHOTOPRISM_DISABLE_WEBDAV: &#34;false&#34;             # disables built-in WebDAV server
+      PHOTOPRISM_DISABLE_SETTINGS: &#34;false&#34;           # disables Settings in Web UI
+      PHOTOPRISM_DISABLE_TENSORFLOW: &#34;false&#34;         # disables all features depending on TensorFlow
+      PHOTOPRISM_DISABLE_FACES: &#34;false&#34;              # disables facial recognition
+      PHOTOPRISM_DISABLE_CLASSIFICATION: &#34;false&#34;     # disables image classification
+      PHOTOPRISM_DARKTABLE_PRESETS: &#34;false&#34;          # enables Darktable presets and disables concurrent RAW conversion
+      PHOTOPRISM_DETECT_NSFW: &#34;false&#34;                # flag photos as private that MAY be offensive (requires TensorFlow)
+      PHOTOPRISM_UPLOAD_NSFW: &#34;true&#34;                 # allows uploads that MAY be offensive
+      # PHOTOPRISM_DATABASE_DRIVER: &#34;sqlite&#34;         # SQLite is an embedded database that doesn&#39;t require a server
+      PHOTOPRISM_DATABASE_DRIVER: &#34;mysql&#34;            # use MariaDB 10.5+ or MySQL 8+ instead of SQLite for improved performance
+      PHOTOPRISM_DATABASE_SERVER: &#34;mariadb:3306&#34;     # MariaDB or MySQL database server (hostname:port)
+      PHOTOPRISM_DATABASE_NAME: &#34;photoprism&#34;         # MariaDB or MySQL database schema name
+      PHOTOPRISM_DATABASE_USER: &#34;photoprism&#34;         # MariaDB or MySQL database user name
+      PHOTOPRISM_DATABASE_PASSWORD: &#34;insecure&#34;       # MariaDB or MySQL database user password
+      PHOTOPRISM_SITE_TITLE: &#34;PhotoPrism&#34;
+      PHOTOPRISM_SITE_CAPTION: &#34;AI-Powered Photos App&#34;
+      PHOTOPRISM_SITE_DESCRIPTION: &#34;&#34;
+      PHOTOPRISM_SITE_AUTHOR: &#34;&#34;
+      ## Run/install on first startup (options: update, gpu, tensorflow, davfs, nano, clean):
+      PHOTOPRISM_INIT: &#34;gpu tensorflow&#34;
+      ## Hardware video transcoding config (optional)
+      # PHOTOPRISM_FFMPEG_BUFFERS: &#34;64&#34;              # FFmpeg capture buffers (default: 32)
+      # PHOTOPRISM_FFMPEG_BITRATE: &#34;32&#34;              # FFmpeg encoding bitrate limit in Mbit/s (default: 50)
+      # PHOTOPRISM_FFMPEG_ENCODER: &#34;h264_v4l2m2m&#34;    # use Video4Linux for AVC transcoding (default: libx264)
+      # PHOTOPRISM_FFMPEG_ENCODER: &#34;h264_qsv&#34;        # use Intel Quick Sync Video for AVC transcoding (default: libx264)
+      ## Run as a specific user, group, or with a custom umask (does not work together with &#34;user:&#34;)
+      # PHOTOPRISM_UID: 1000
+      # PHOTOPRISM_GID: 1000
+      # PHOTOPRISM_UMASK: 0000
+      HOME: &#34;/photoprism&#34;
+    ## Start as a non-root user (see https://docs.docker.com/engine/reference/run/#user)
+    # user: &#34;1000:1000&#34;
+    ## Share hardware devices with FFmpeg and TensorFlow (optional):
+    # devices:
+    #  - &#34;/dev/dri:/dev/dri&#34;
+    #  - &#34;/dev/nvidia0:/dev/nvidia0&#34;
+    #  - &#34;/dev/nvidiactl:/dev/nvidiactl&#34;
+    #  - &#34;/dev/video11:/dev/video11&#34; # Video4Linux (h264_v4l2m2m)
+    working_dir: &#34;/photoprism&#34;
+    ## Storage Folders: &#34;~&#34; is a shortcut for your home directory, &#34;.&#34; for the current directory
+    volumes:
+      # &#34;/host/folder:/photoprism/folder&#34;                # example
+      - &#34;~/Pictures:/photoprism/originals&#34;               # original media files (photos and videos)
+      # - &#34;/example/family:/photoprism/originals/family&#34; # *additional* media folders can be mounted like this
+      - &#34;~/Import:/photoprism/import&#34;                  # *optional* base folder from which files can be imported to originals
+      - &#34;./storage:/photoprism/storage&#34;                  # *writable* storage folder for cache, database, and sidecar files (never remove)
+
+  ## Database Server (recommended)
+  ## see https://docs.photoprism.app/getting-started/faq/#should-i-use-sqlite-mariadb-or-mysql
+  mariadb:
+    ## If MariaDB gets stuck in a restart loop, this points to a memory or filesystem issue:
+    ## https://docs.photoprism.app/getting-started/troubleshooting/#fatal-server-errors
+    restart: unless-stopped
+    image: mariadb:10.6
+    security_opt:
+      - seccomp:unconfined
+      - apparmor:unconfined
+    command: mysqld --innodb-buffer-pool-size=128M --transaction-isolation=READ-COMMITTED --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --max-connections=512 --innodb-rollback-on-timeout=OFF --innodb-lock-wait-timeout=120
+    ## Never store database files on an unreliable device such as a USB flash drive, an SD card, or a shared network folder:
+    volumes:
+      - &#34;./database:/var/lib/mysql&#34; # important, don&#39;t remove
+    environment:
+      MYSQL_ROOT_PASSWORD: insecure
+      MYSQL_DATABASE: photoprism
+      MYSQL_USER: photoprism
+      MYSQL_PASSWORD: insecure
+
+  ## Watchtower upgrades services automatically (optional)
+  ## see https://docs.photoprism.app/getting-started/updates/#watchtower
+  #
+  # watchtower:
+  #   restart: unless-stopped
+  #   image: containrrr/watchtower
+  #   environment:
+  #     WATCHTOWER_CLEANUP: &#34;true&#34;
+  #     WATCHTOWER_POLL_INTERVAL: 7200 # checks for updates every two hours
+  #   volumes:
+  #     - &#34;/var/run/docker.sock:/var/run/docker.sock&#34;
+  #     - &#34;~/.docker/config.json:/config.json&#34; # optional, for authentication if you have a Docker Hub account
+</code></pre><p><strong>Важливо!</strong>, це</p><blockquote><p>порт хосту змінено на 8484 в порівняні із налаштуваннями по замовчуванню. Порт можна не змінювати, це за бажанням. Зміну здійснено аби відповідати конфігурації Nginx -></p></blockquote><pre tabindex=0><code>    ports:
+      - &#34;**8484**:2342&#34; # HTTP port (host:container)
+</code></pre><blockquote><p>змінити основний пароль -></p></blockquote><pre tabindex=0><code>      PHOTOPRISM_ADMIN_PASSWORD: &#34;insecure&#34;          # !!! PLEASE CHANGE YOUR INITIAL &#34;admin&#34; PASSWORD !!!
+</code></pre><blockquote><p>повністю прописати адресу (шлях) до суб директорії, включаючи домен та слеш в кінці шляху -></p></blockquote><pre tabindex=0><code>      PHOTOPRISM_SITE_URL: &#34;https://example.com/photoprism/&#34;  # public server URL incl http:// or https:// and /path, :port is optional
+</code></pre><blockquote><p>додатково включено це налаштування, аби гарно впізнавались обличчя -></p></blockquote><pre tabindex=0><code>      PHOTOPRISM_INIT: &#34;gpu tensorflow&#34;
+</code></pre></div><div class=tags><ul class=flat><li class=tag-li><a href=/tags/general>general</a></li><li class=tag-li><a href=/tags/server>server</a></li><li class=tag-li><a href=/tags/web>web</a></li><li class=tag-li><a href=/tags/webserver>webserver</a></li><li class=tag-li><a href=/tags/configs>configs</a></li><li class=tag-li><a href=/tags/setup>setup</a></li><li class=tag-li><a href=/tags/linux>linux</a></li><li class=tag-li><a href=/tags/nginx>nginx</a></li><li class=tag-li><a href=/tags/photoprism>photoprism</a></li></ul></div><div class=back><a href=https://github.com/jt0in3e/jt0in3e.github.io/blob/master/content/posts/post-10/index.md title=github><i data-feather=github></i> Edit this on GitHub</a></div><div class=back><a href=https://jt0in3e.github.io/><span aria-hidden=true>← Back</span></a></div><div class=back>Next time, we'll talk about <i>"10 Reasons why gcc SHOULD be re-written in JavaScript - You won't believe #8!"</i></div></div></div><div class="footer wrapper"><nav class=nav><div>2022 © J:a.k.a:Y</nav></div><script>feather.replace()</script></body></html>

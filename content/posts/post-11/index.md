@@ -1,7 +1,7 @@
 ---
 title: "Подружити коментарі в блозі Hugo з Matrix, або як додати до блогу коментарі"
 description: ""
-DID: "Post 11"
+DID: "Post-11"
 date: 2022-05-13T08:26:05+02:00
 publishdate: 2022-05-13 08:26
 lastmod: 2022-05-13 08:26

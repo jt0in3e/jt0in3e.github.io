@@ -12,7 +12,7 @@ tags:
   - website
   - blog
   - github
-draft: true
+draft: false
 ---
 
 While deploying blog post with Hugo engine to Github, the following error received:
@@ -36,6 +36,14 @@ The ```grep -Rnie "site.disqus" .``` returns two files where this config is used
 ```
 
 Then change it from **.Site.DisqusShortname** to **.Site.Config.Services.Disqus.Shortname**. And now it deploys.
+
+Update your theme either through ```git pull``` request or ```hugo mod get -u``` if a theme is used and added as module (very newest Hugo's approach).
+
+The search one more time for ".Site.DisqusShortname" and replace it with ".Site.Config.Services.Disqus.Shortname".
+
+Commit your changes and push to the repo.
+
+
 
 
 {{< discuss >}}

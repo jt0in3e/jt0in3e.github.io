@@ -17,11 +17,10 @@ draft: false
 
 While deploying blog post with Hugo engine to Github, the following error received:
 
-```
+```bash
 Run hugo --minify
 Start building sites … 
 hugo v0.132.1-1bde700dfc0770bb11eb8445aff1ab5abdccb46e linux/amd64 BuildDate=2024-08-13T10:10:10Z VendorInfo=gohugoio
-
 ERROR deprecated: .Site.DisqusShortname was deprecated in Hugo v0.120.0 and will be removed in Hugo 0.133.0. Use .Site.Config.Services.Disqus.Shortname instead.
 Total in 78 ms
 Error: error building site: logged 1 error(s)
@@ -42,8 +41,5 @@ Update your theme either through ```git pull``` request or ```hugo mod get -u```
 The search one more time for ".Site.DisqusShortname" and replace it with ".Site.Config.Services.Disqus.Shortname".
 
 Commit your changes and push to the repo.
-
-
-
 
 {{< discuss >}}
